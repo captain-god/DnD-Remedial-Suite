@@ -8,86 +8,104 @@ package com.literallyprofessional.dnd.item
  
 class Inventory {
     //currentLoadOut is all items associated with your character.
-    Item[] currentLoadOut = new Item[25]();
+    private Item[] currentLoadOut;
     //on person is all gear and items not equipped, excluding money.
-    Item[] onPerson = new Item[25]();
+    private Item[] onPerson;
     //currentlyEquipped is all items equipped - weapons, armor and trinkets
-    Map<String, Item> currentlyEquipped = new HashMap<String, Item>();
+    private Map<String, Item> currentlyEquipped;
 
-    int onPersonWeight;
-    int currentLoadOutWeight;
-    int characterStrength;
-    int lightLoad;
-    int mediumLoad;
-    int heavyLoad;
-    int maxLoad;
+    private int onPersonWeight;
+    private int currentLoadOutWeight;
+    private int characterStrength;
+    private int lightLoad;
+    private int mediumLoad;
+    private int heavyLoad;
+    private int maxLoad;
 
-    int getMaxLoad() {
+    public Inventory(int chaStr){
+        currentLoadOut = new Item[25]();
+        onPerson = new Item[25]();
+        setUpEquipSlots();
+        characterStrength = chaStr;
+    }
+
+    public Inventory(int chaStr, Item[] inventory){
+        currentLoadOut = inventory;
+        onPerson = new Item[25]();
+        setUpEquipSlots();
+        characterStrength=chaStr;
+    }
+
+    private setUpEquipSlots(){
+        currentlyEquipped = new HashMap<String, Item>();
+        currentlyEquipped["head"]=null;
+        currentlyEquipped["chest"]=null;
+        currentlyEquipped["legs"]=null;
+        currentlyEquipped["feet"]=null;
+        currentlyEquipped["hands"]=null;
+        currentlyEquipped["waist"]=null;
+        currentlyEquipped["neck"]=null;
+        currentlyEquipped["ring1"]=null;
+        currentlyEquipped["ring2"]=null;
+        //more to come?
+    }
+
+    public int getMaxLoad() {
         return maxLoad
     }
 
-    void setMaxLoad(int maxLoad) {
+    public void setMaxLoad(int maxLoad) {
         this.maxLoad = maxLoad
     }
 
-    int getOnPersonWeight() {
+    public int getOnPersonWeight() {
         return onPersonWeight
     }
 
-    void setOnPersonWeight(int onPersonWeight) {
+    public void setOnPersonWeight(int onPersonWeight) {
         this.onPersonWeight = onPersonWeight
     }
 
-    int getCurrentLoadOutWeight() {
+    public  int getCurrentLoadOutWeight() {
         return currentLoadOutWeight
     }
 
-    void setCurrentLoadOutWeight(int currentLoadOutWeight) {
+    public void setCurrentLoadOutWeight(int currentLoadOutWeight) {
         this.currentLoadOutWeight = currentLoadOutWeight
     }
 
-    int getCharacterStrength() {
+    public int getCharacterStrength() {
         return characterStrength
     }
 
-    void setCharacterStrength(int characterStrength) {
+    public void setCharacterStrength(int characterStrength) {
         this.characterStrength = characterStrength
     }
 
-    int getLightLoad() {
+    public int getLightLoad() {
         return lightLoad
     }
 
-    void setLightLoad(int lightLoad) {
+    public void setLightLoad(int lightLoad) {
         this.lightLoad = lightLoad
     }
 
-    int getMediumLoad() {
+    public int getMediumLoad() {
         return mediumLoad
     }
 
-    void setMediumLoad(int mediumLoad) {
+    public void setMediumLoad(int mediumLoad) {
         this.mediumLoad = mediumLoad
     }
 
-    int getHeavyLoad() {
+    public int getHeavyLoad() {
         return heavyLoad
     }
 
-    void setHeavyLoad(int heavyLoad) {
+    public void setHeavyLoad(int heavyLoad) {
         this.heavyLoad = heavyLoad
     }
-    
-    public Inventory(int chaStr){
-        currentLoadOut = null;
-        characterStrength = chaStr;
-    }
-    
-    public Inventory(int chaStr, Item[] inventory){
-        currentLoadOut = inventory;
-        characterStrength=chaStr;
-    }
-    
+
     public Item[] getCurrentLoadOut(){
         return currentLoadOut;
     }

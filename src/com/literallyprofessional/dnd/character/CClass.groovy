@@ -1,7 +1,10 @@
 package com.literallyprofessional.dnd.character
 
+import com.literallyprofessional.dnd.core.*;
 /**
- * Created by Doug on 9/23/2014.
+ * This is the class that creates Character Classes (Class is reserved, so CClass it is.)
  */
 class CClass {
+    Dice hitDie;
+
 }
