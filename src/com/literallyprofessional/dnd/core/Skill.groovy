@@ -3,7 +3,7 @@ package com.literallyprofessional.dnd.core
 /**
  * Enum representing the various skills in game
  */
-enum Skill {
+enum Skill implements Serializable{
     APPRAISE, BALANCE, BLUFF, CLIMB,
     CONCENTRATION, CRAFT, DECIPHER_SCRIPT,
     DIPLOMACY, DISABLE_DEVICE, DISGUISE,

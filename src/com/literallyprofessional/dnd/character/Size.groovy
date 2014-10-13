@@ -3,7 +3,7 @@ package com.literallyprofessional.dnd.character;
 /**
  * Enum representing the sizes in the game
  */
-public enum Size {
+public enum Size implements Serializable {
     FINE, DIMINUTIVE, TINY, SMALL,
     MEDIUM, LARGE_TALL, LARGE_LONG,
     HUGE_TALL, HUGE_LONG,

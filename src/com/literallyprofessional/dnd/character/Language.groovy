@@ -1,12 +1,12 @@
 package com.literallyprofessional.dnd.character
 
 /**
- * Created by Doug on 9/26/2014.
+ * Spoken Languages in game
  */
-public enum Language {
+public enum Language implements Serializable{
     ABYSSAL, AQUAN, AURAN, CELESTIAL,
     COMMON, DRACONIC, DRUIDIC, DWARVEN,
     ELVEN, GIANT, GNOME, GOBLIN, GNOLL,
     HALFLING, IGNAN, INFERNAL, ORC,
-    SYLVAN, TERRAN, UNDERCOMMON,
+    SYLVAN, TERRAN, UNDERCOMMON, SECRET,
 }

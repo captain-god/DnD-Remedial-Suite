@@ -4,59 +4,47 @@ package com.literallyprofessional.dnd.item
  * This is a collection class that holds all the character's items. It contains the 
  * character's calculated weight limits (light load, heavy load, etc) and equipment
  * slots, such as equipped weapons, armor and shields.
+ *
+ * NOTE: The weight stuff (load class and such) will not be implemented this release
+ * because the 3.5 core for light, medium and heavy fucking blooooooows. So we'll
+ * figure that out in a later version.
  */
- 
-class Inventory {
+
+class Inventory implements Serializable{
     //currentLoadOut is all items associated with your character.
     private Item[] currentLoadOut;
-    //on person is all gear and items not equipped, excluding money.
-    private Item[] onPerson;
-    //currentlyEquipped is all items equipped - weapons, armor and trinkets
-    private Map<String, Item> currentlyEquipped;
+    //currentlyEquipped is all items equipped by your character: armor, weapons, rings, trinkets etc.
+    private Map<Slot, Item> currentlyEquipped;
 
+    private Currency moneyOnPerson;
     private int onPersonWeight;
     private int currentLoadOutWeight;
     private int characterStrength;
-    private int lightLoad;
-    private int mediumLoad;
-    private int heavyLoad;
-    private int maxLoad;
-
-    public Inventory(int chaStr){
-        currentLoadOut = new Item[25]();
-        onPerson = new Item[25]();
-        setUpEquipSlots();
-        characterStrength = chaStr;
-    }
+//    private int lightLoad;
+//    private int mediumLoad;
+//    private int heavyLoad;
 
     public Inventory(int chaStr, Item[] inventory){
-        currentLoadOut = inventory;
-        onPerson = new Item[25]();
-        setUpEquipSlots();
-        characterStrength=chaStr;
+        currentLoadOut = inventory; //it can be an empty array, but it must be an array nonetheless.
+        characterStrength = chaStr; //used to determine the weight limits
+        currentlyEquipped = new HashMap<Slot, Item>(); //initialize this thing
+//        setWeightConstraints();
     }
 
-    private setUpEquipSlots(){
-        currentlyEquipped = new HashMap<String, Item>();
-        currentlyEquipped["head"]=null;
-        currentlyEquipped["chest"]=null;
-        currentlyEquipped["legs"]=null;
-        currentlyEquipped["feet"]=null;
-        currentlyEquipped["hands"]=null;
-        currentlyEquipped["waist"]=null;
-        currentlyEquipped["neck"]=null;
-        currentlyEquipped["ring1"]=null;
-        currentlyEquipped["ring2"]=null;
-        //more to come?
-    }
-
-    public int getMaxLoad() {
-        return maxLoad
-    }
-
-    public void setMaxLoad(int maxLoad) {
-        this.maxLoad = maxLoad
-    }
+//    public void setWeightConstraints(){
+//        //unfortunately, dungeons and dragons' weight constraints are not formulaic - that is, they fucking suck, so
+//        //we have to do a huge, shitty switch statement.
+//
+//        switch(characterStrength){
+//            case 1:
+//                lightLoad =
+//                heavyLoad = 7
+//                break;
+//            default: //the rule for all numbers > 29
+//
+//                break;
+//        }
+//    }
 
     public int getOnPersonWeight() {
         return onPersonWeight
@@ -86,27 +74,46 @@ class Inventory {
         return lightLoad
     }
 
-    public void setLightLoad(int lightLoad) {
-        this.lightLoad = lightLoad
-    }
-
     public int getMediumLoad() {
         return mediumLoad
-    }
-
-    public void setMediumLoad(int mediumLoad) {
-        this.mediumLoad = mediumLoad
     }
 
     public int getHeavyLoad() {
         return heavyLoad
     }
 
-    public void setHeavyLoad(int heavyLoad) {
-        this.heavyLoad = heavyLoad
-    }
-
     public Item[] getCurrentLoadOut(){
         return currentLoadOut;
+    }
+
+    Currency getMoneyOnPerson() {
+        return moneyOnPerson
+    }
+
+    void setMoneyOnPerson(Currency moneyOnPerson) {
+        this.moneyOnPerson = moneyOnPerson
+    }
+
+    //gingerly remove the item from the character's inventory.
+    boolean unEquipItemFrom(Slot itemSlot){
+        if(currentlyEquipped[itemSlot]){
+            currentlyEquipped[itemSlot] = null;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    String equipItemTo(Slot itemSlot, Item toEquip){
+        if(currentlyEquipped[itemSlot]){ //if not null, that is
+            Item existing = currentlyEquipped[itemSlot];
+            currentlyEquipped[itemSlot] = toEquip;
+            return "Replaced " + existing + " with " + toEquip + ".";
+        }
+        else{
+            currentlyEquipped[itemSlot] = toEquip;
+            return "Equipped " + toEquip;
+        }
     }
 }

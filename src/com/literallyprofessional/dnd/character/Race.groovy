@@ -6,24 +6,24 @@ import com.literallyprofessional.dnd.core.Spell
 /**
  * This is the class that builds races.
  */
-class Race {
-    String raceName;
-    String raceDescription;
-    Language[] raceDefaultLanguage; //for instance, half-orcs start with common and one other choice.
-    CClass raceFavoredClass;
-    Size raceSize;
+class Race implements Serializable {
+    private String raceName;
+    private String raceDescription;
+    private Language[] raceDefaultLanguage; //for instance, half-orcs start with common and one other choice.
+    private CharacterClass raceFavoredClass;
+    private Size raceSize;
     //racial mods to skills
-    int strMod;
-    int conMod;
-    int dexMod;
-    int wisMod;
-    int intMod;
-    int chaMod;
-    int levelAdjustment; //not supported in phb1, but some mm classes need this. accounting for it now cant hurt.
-    Skill[] bonusSkills; //for instance, elves have +2 to listen
-    Spell[] bonusSpells; //for instance, gnomes have ghost sound
+    private int strMod;
+    private int conMod;
+    private int dexMod;
+    private int wisMod;
+    private int intMod;
+    private int chaMod;
+    private int levelAdjustment; //not supported in phb1, but some mm classes need this. accounting for it now cant hurt.
+    private Skill[] bonusSkills; //for instance, elves have +2 to listen
+    private Spell[] bonusSpells; //for instance, gnomes have ghost sound
 
-    public Race(String name, String description, Language[] languages, CClass favoredClass, Size size,
+    public Race(String name, String description, Language[] languages, CharacterClass favoredClass, Size size,
                 int str, int con, int dex, int wis, int intel, int cha, int levelAdjustment, Skill[] bonusSkills,
                 Spell[] bonusSpells){
         this.raceName = name;
@@ -74,11 +74,11 @@ class Race {
         this.raceDefaultLanguage = raceDefaultLanguage
     }
 
-    CClass getRaceFavoredClass() {
+    CharacterClass getRaceFavoredClass() {
         return raceFavoredClass
     }
 
-    void setRaceFavoredClass(CClass raceFavoredClass) {
+    void setRaceFavoredClass(CharacterClass raceFavoredClass) {
         this.raceFavoredClass = raceFavoredClass
     }
 
