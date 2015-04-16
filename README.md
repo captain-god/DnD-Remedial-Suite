@@ -7,5 +7,4 @@ Along the way, I got bold, and started thinking of fun, new things I can include
 
 #Current Version
 0.0.1 - Re-structure; development of GUIs.  
-
-~~0.0.0 - _Structure_~~
+~~0.0.0 - Structure~~

@@ -11,7 +11,7 @@ public class Race {
     private String name;
     private String description;
     private PlayerClass favoredClass;
-    private ArrayList<AbstractMap.SimpleEntry<Integer, Ability>> abilityModifiers;
+    private ArrayList<AbilityMods> abilityModifiers;
     private int middleAge;
     private int oldAge;
     private int venerableAge;
@@ -73,15 +73,37 @@ public class Race {
         this.maxAge = maxAge;
     }
 
-    public ArrayList<AbstractMap.SimpleEntry<Integer, Ability>> getAbilityModifiers() {
+    public ArrayList<AbilityMods> getAbilityModifiers() {
         return abilityModifiers;
     }
 
-    public void setAbilityModifiers(ArrayList<AbstractMap.SimpleEntry<Integer, Ability>> abilityModifiers) {
+    public void setAbilityModifiers(ArrayList<AbilityMods> abilityModifiers) {
         this.abilityModifiers = abilityModifiers;
     }
 
-    public void addAbilityModifier(Ability ability, int modifier){
-        abilityModifiers.add(new AbstractMap.SimpleEntry<Integer, Ability>(modifier,ability));
+    public class AbilityMods{
+        int mod;
+        Ability ability;
+
+        public AbilityMods(int i, Ability ability){
+            setAbility(ability);
+            setMod(i);
+        }
+
+        public void setAbility(Ability ability) {
+            this.ability = ability;
+        }
+
+        public void setMod(int mod) {
+            this.mod = mod;
+        }
+
+        public Ability getAbility() {
+            return ability;
+        }
+
+        public int getMod() {
+            return mod;
+        }
     }
 }

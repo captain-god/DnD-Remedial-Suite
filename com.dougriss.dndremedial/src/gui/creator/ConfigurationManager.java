@@ -17,9 +17,12 @@ public class ConfigurationManager extends JFrame {
     private JButton racesButton;
     private JButton currencyButton;
     private JButton exitButton;
-    private JButton editFileButton;
+    private JButton viewConfigButton;
     private JButton itemsButton;
     private JButton rulesButton;
+    private JButton loadConfigurationButton;
+    private JButton saveConfigurationButton;
+    private JButton newConfigurationButton;
 
     public ConfigurationManager(){
         super("Configuration");
@@ -31,76 +34,63 @@ public class ConfigurationManager extends JFrame {
         setLocationRelativeTo(null);
         requestFocus();
 
-        abilitiesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
+        abilitiesButton.addActionListener(actionEvent -> {
+            new AbilityCreator();
+            dispose();
         });
 
-        featsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        featsButton.addActionListener(actionEvent -> {
 
-            }
         });
 
-        classesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
+        classesButton.addActionListener(actionEvent -> {
+            new ClassCreator();
+            dispose();
         });
 
-        skillsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
+        skillsButton.addActionListener(actionEvent -> {
+            new SkillCreator();
+            dispose();
         });
 
-        racesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
+        racesButton.addActionListener(actionEvent -> {
+            new RaceCreator();
+            dispose();
         });
 
-        currencyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
+        currencyButton.addActionListener(actionEvent -> {
+            new CurrencyCreator();
+            dispose();
         });
 
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                new CreatorLauncher();
-                dispose();
-            }
+        exitButton.addActionListener(actionEvent -> {
+            new CreatorLauncher();
+            dispose();
         });
 
-        editFileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        viewConfigButton.addActionListener(actionEvent -> {
 
-            }
         });
 
-        itemsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
+        itemsButton.addActionListener(actionEvent -> {
+            new ItemCreatorLauncher();
+            dispose();
         });
 
-        rulesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        rulesButton.addActionListener(actionEvent -> {
 
-            }
         });
 
+        loadConfigurationButton.addActionListener(e -> {
+
+        });
+
+        saveConfigurationButton.addActionListener(e -> {
+
+        });
+
+        newConfigurationButton.addActionListener(e -> {
+
+        });
     }
 }

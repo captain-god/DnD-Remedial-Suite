@@ -1,5 +1,6 @@
-package src.main;
+package src.operator;
 
+import src.data.game.Configuration;
 import src.gui.AppLauncher;
 
 /**
@@ -8,6 +9,7 @@ import src.gui.AppLauncher;
  */
 public class Main {
     public static void main(String[] args) {
+        //Configuration.getInstance();
         new AppLauncher();
     }
 }

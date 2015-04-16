@@ -7,15 +7,7 @@ package src.data.player;
  */
 public class Ability {
     private String name;
-    private int score;
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
+    private String description;
 
     public String getName() {
         return name;
@@ -23,5 +15,13 @@ public class Ability {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

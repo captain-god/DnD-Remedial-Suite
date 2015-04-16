@@ -12,8 +12,7 @@ import java.awt.event.ActionListener;
 public class CreatorLauncher extends JFrame{
     private JButton characterCreatorButton;
     private JButton townCreatorButton;
-    private JButton itemCreatorButton;
-    private JButton ruleCreatorButton;
+    private JButton spellCreatorButton;
     private JButton configurationEditorButton;
     private JButton exitButton;
     private JPanel rootPanel;
@@ -28,49 +27,27 @@ public class CreatorLauncher extends JFrame{
         setLocationRelativeTo(null);
         requestFocus();
 
-        characterCreatorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                new CharacterCreator();
-                dispose();
-            }
+        characterCreatorButton.addActionListener(actionEvent -> {
+            new CharacterCreator();
+            dispose();
         });
 
-        townCreatorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        townCreatorButton.addActionListener(actionEvent -> {
 
-            }
         });
 
-        itemCreatorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        spellCreatorButton.addActionListener(actionEvent -> {
 
-            }
         });
 
-        ruleCreatorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
+        configurationEditorButton.addActionListener(actionEvent -> {
+            new ConfigurationManager();
+            dispose();
         });
 
-        configurationEditorButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                new ConfigurationManager();
-                dispose();
-            }
-        });
-
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                new AppLauncher();
-                dispose();
-            }
+        exitButton.addActionListener(actionEvent -> {
+            new AppLauncher();
+            dispose();
         });
     }
 }

@@ -4,13 +4,14 @@ import src.data.item.Currency;
 import src.data.item.Item;
 import src.data.player.*;
 
+import java.io.*;
 import java.util.ArrayList;
 
 /**
  * Created by dougriss on 4/9/15.
  * Houses rules and configurations for this loadout
  */
-public class Configuration {
+public class Configuration implements Serializable{
     private ArrayList<Rule> listOfRules;
     private ArrayList<PlayerClass> listOfClasses;
     private ArrayList<Ability> listOfAbilities;
@@ -21,6 +22,22 @@ public class Configuration {
     private ArrayList<Currency> listOfCurrencies;
     private String name;
     private String description;
+    private static Configuration instance;
+
+    //constructor
+    private Configuration(){
+        instance = buildConfigFromFile();
+    }
+
+    //ensure only one configuration is open.
+    //singleton pattern;;
+    public static synchronized Configuration getInstance()
+    {
+        if (instance == null)
+            instance = new Configuration();
+
+        return instance;
+    }
 
     public ArrayList<Rule> getListOfRules() {
         return listOfRules;
@@ -197,4 +214,43 @@ public class Configuration {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void saveConfigToFile(String fileName){
+        try{
+            FileOutputStream fout = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(instance);
+            oos.close();
+            System.out.println("Done");
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    private Configuration buildConfigFromFile(){
+        Configuration cfg;
+
+        try{
+
+            FileInputStream fin = new FileInputStream("main_config.ser");
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            cfg = (Configuration) ois.readObject();
+            ois.close();
+
+            return cfg;
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+            cfg = null; //buildDefaultConfigFile();
+
+            return cfg;
+        }
+    }
+
+//    private Configuration buildDefaultConfigFile(){
+//        Configuration cfg;
+//
+//        return cfg;
+//    }
 }
