@@ -1,5 +1,8 @@
 package src.gui.creator;
 
+import src.data.game.Settings;
+import src.data.player.Ability;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,12 +28,29 @@ public class AbilityCreator extends JFrame{
         requestFocus();
 
         saveButton.addActionListener(e -> {
-
+            if (verifyContents()) {
+                Settings.getInstance().addAbility(new Ability(nameTextField.getText(), descriptionTextArea.getText()));
+                new ConfigurationManager();
+                dispose();
+            }
+            else{
+                JOptionPane.showConfirmDialog(null, "Please enter all information");
+            }
         });
 
         backButton.addActionListener(e -> {
             new ConfigurationManager();
             dispose();
         });
+    }
+
+    private boolean verifyContents(){
+        if(nameTextField.getText() == ""){
+            return false;
+        }
+        else if (descriptionTextArea.getText()== ""){
+            return false;
+        }
+        return true;
     }
 }
